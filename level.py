@@ -277,7 +277,7 @@ class Level:
 				for x in lbird:
 					x.die()
 			# if self.bosscnt == 5:
-				self.generate_bird(4)
+				self.generate_bird(2)
 				# self.generate_bird(4)
 					# self.bosscnt +=  1
 				# cnt += 10

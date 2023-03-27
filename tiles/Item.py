@@ -3,7 +3,7 @@ from setting import *
 
 class Star(Tile):
 	def __init__(self,pos,size,game):
-		super().__init__(pos,size,'star.png',game)
+		super().__init__(pos,size,'ball.png',game)
 class Potion(Tile):
 	def __init__(self,pos,size,game):
 		super().__init__(pos,size,'potion.png',game)
