@@ -67,6 +67,7 @@ class Player(pygame.sprite.Sprite):
 				if hit.life == 0: 
 					self.game.score.score+=hit.max_life
 					hit.die()
+					self.addLife(40)
 			elif isinstance(hit,MedKit):
 				self.game.particles.append(
                     CircleExplosion(hit.rect.center, (255, 50, 50), 7, 100)

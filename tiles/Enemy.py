@@ -60,11 +60,17 @@ def changeColor(image, color):
 	return finalImage
 
 def initImage(boss=False):
-	img=pygame.transform.scale2x(load_image("bird.png"))
-	swidth = 64
+	
+	swidth = 0
 	if boss:
+		img=pygame.transform.scale2x(load_image("bird.png"))
 		img=pygame.transform.scale2x(img)
+		# img = pygame.transform.scale(load_image("bird.png"),(200,100))
 		swidth = 128
+	else:
+		img=pygame.transform.scale2x(load_image("bird.png"))
+ 
+		swidth = 64
 	images=[]
 	for i in range(img.get_width()//swidth):
 		surf=pygame.Surface((swidth,swidth))
