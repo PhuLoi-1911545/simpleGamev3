@@ -81,7 +81,7 @@ class Player(pygame.sprite.Sprite):
 				hit.kill()
 			elif isinstance(hit,Star):
 				self.game.particles.append(
-                    CircleExplosion(hit.rect.center, (255, 255, 50), 7, 100)
+                    CircleExplosion(hit.rect.center, (255, 150, 50), 7, 100)
                 )
 				self.starModeTime = 3
 				sound.stop('music')

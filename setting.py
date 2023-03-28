@@ -86,7 +86,7 @@ MENU_FRAME_RATE = 24
 TRANSPARENT = BLACK
 
 HIGHSCORES_AMOUNT = 10
-GAME = "Bird's Rage"
+GAME = "SUPERMAN"
 WIDTH, HEIGHT = (screen_width, screen_height)
 # WIDTH, HEIGHT = (len(level_map[0])*tile_size,len(level_map)*tile_size)
 DATA_DIRNAME = "data"
