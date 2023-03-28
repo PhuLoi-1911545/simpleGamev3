@@ -60,11 +60,11 @@ def changeColor(image, color):
 	return finalImage
 
 def initImage(boss=False):
-	img=pygame.transform.scale2x(load_image("bird.png"))
-	swidth = 64
+	img=pygame.transform.scale2x(load_image("monstermove.png"))
+	swidth = 76
 	if boss:
-		img=pygame.transform.scale2x(img)
-		swidth = 128
+		img=pygame.transform.scale2x(load_image("boss.png"))
+		swidth = 254
 	images=[]
 	for i in range(img.get_width()//swidth):
 		surf=pygame.Surface((swidth,swidth))
@@ -160,7 +160,8 @@ class Boss(Enemy):
 			self.frameIdx-=len(bossImgs[0])
 		X= max(1-self.life/self.max_life,0.1)
 		Y =255*self.last_shot/self.shot_dur
-		color =(255*X,(255-Y)*X,(255-Y)*X,100)
+		# color =(255*X,(255-Y)*X,(255-Y)*X,100)
+		color =(255,(255-Y),(255-Y),100)
 		self.image=changeColor(bossImgs[ppos[0]>self.rect.centerx][int(self.frameIdx)],color)
 
 	def update(self,delta):
