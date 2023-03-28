@@ -36,6 +36,8 @@ class Player(pygame.sprite.Sprite):
 
 		self.animation_speed = 6
 		self.frameIdx = 0
+  
+		self.look = 0
 
 	def initImg(self):
 		images=import_folder("data/player")
@@ -245,7 +247,7 @@ class Player(pygame.sprite.Sprite):
 		self.v.y += self.gravity*delta
 
 	def animate(self,delta):
-		mouse_pos = pygame.mouse.get_pos()
+		# mouse_pos = pygame.mouse.get_pos()
 		self.frameIdx += delta*self.animation_speed
 		while self.frameIdx >= len(self.images[0]):
 			self.frameIdx-=len(self.images[0])
@@ -253,7 +255,8 @@ class Player(pygame.sprite.Sprite):
 			self.frameIdx = 3
 		elif self.v.y < -100:
 			self.frameIdx = 2
-		self.image=self.images[mouse_pos[0]<self.pos[0]][int(self.frameIdx)]
+		# self.image=self.images[mouse_pos[0]<self.pos[0]][int(self.frameIdx)]
+		self.image=self.images[self.look][int(self.frameIdx)]
 
 	def update(self,delta,playermoves:PMoves):
 		if self.life == 0:
@@ -269,11 +272,13 @@ class Player(pygame.sprite.Sprite):
 			self.flyToLeft()
 			sound.play('swoosh')
 			playermoves.flyToLeft=False
+			self.look = 1
 		
 		if playermoves.flyToRight:
 			self.flyToRight()
 			sound.play('swoosh')
 			playermoves.flyToRight=False
+			self.look = 0
 
 		if playermoves.flyToUp:
 			self.flyToUp()
