@@ -44,7 +44,7 @@ class Level:
 		self.clock = pygame.time.Clock()
 		self.is_exit = False
   
-		# self.bosscnt = 0
+		self.bosscnt = 3
 
 	def play(self):
 		# Display the menu
@@ -261,50 +261,16 @@ class Level:
 		self.cooldown_bird -= delta
 		if self.cooldown_bird <= 0:
 			self.cooldown_bird = max_cooldown_bird
-			# cnt = 1
-			lbird =[]
-			# bosscnt = 0
-			# for x in self.playerColliders:
-			# 	if isinstance(x,Bird):
-			# 		cnt+=1
-			# 		lbird.append(x)
-			# if cnt<10:
-			# 	for i in range(number_bird_generated):
-			# 		self.generate_bird()
-			# else:
-			# 	for x in lbird:
-			# 		x.die()
-			# 	self.generate_bird(cnt*2)
-   
-   
-			for x in self.playerColliders:
-				if isinstance(x,Bird):
-					# cnt+=1
-					lbird.append(x)
-			# if cnt<10:
-			# if self.timer.time < 10:
+			self.bosscnt -= 1
+			print(self.bosscnt)
 			for i in range(number_bird_generated):
 				self.generate_bird()
-			if self.timer.time > 10:
-				for x in lbird:
-					x.die()
-			# if self.bosscnt == 5:
-				self.generate_bird(2)
-				# self.generate_bird(4)
-					# self.bosscnt +=  1
-				# cnt += 10
-			# if cnt == 5:
-				# for x in lbird:
-				# 	x.die()
-				
     
-			# else:
-			# 	for x in lbird:
-			# 		x.die()
-			# 	self.generate_bird(cnt*2)
-			# print(cnt)
-		
-			# self.generate_bird(100)
+		if self.bosscnt == 0:
+			print("Generate a boss")
+			self.generate_bird(2)
+			self.bosscnt = 3
+				
 		
 		# Cooldown + Generate box
 		self.cooldown_box -= delta
