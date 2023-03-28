@@ -106,7 +106,7 @@ class Player(pygame.sprite.Sprite):
 				if randint(1,3)==1:
 					obj=Potion(v,item_size,self.game)
 				else:
-					obj=Star(v,item_size,self.game)
+					obj=Star(v,item_size/2,self.game)
 				self.game.tiles.add(obj)
 				self.game.playerGathers.add(obj)
 				hit.kill()
@@ -166,7 +166,7 @@ class Player(pygame.sprite.Sprite):
 	def flyToLeft(self):
 		# mouse_pos = pygame.mouse.get_pos()
 
-		mouse_pos = [self.rect.centerx - 200,  self.rect.centery-80]
+		mouse_pos = [self.rect.centerx - 100,  self.rect.centery-80]
 
 		cenx = self.rect.centerx
 		ceny = self.rect.centery
@@ -178,7 +178,7 @@ class Player(pygame.sprite.Sprite):
 
 	def flyToRight(self):
 		# mouse_pos = pygame.mouse.get_pos()
-		mouse_pos = [self.rect.centerx + 200,  self.rect.centery-80]
+		mouse_pos = [self.rect.centerx + 100,  self.rect.centery-80]
 
 		# mouse_pos = [985,  100]
 		cenx = self.rect.centerx
