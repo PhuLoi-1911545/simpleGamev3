@@ -227,6 +227,9 @@ class Level:
 						
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
 				self.playermoves.flyToUp = True
+
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+				self.playermoves.flyToDown = True
 			
 			
 			elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.game_over:
@@ -276,17 +279,17 @@ class Level:
 			# 	self.generate_bird(cnt*2)
    
    
-			for x in self.playerColliders:
-				if isinstance(x,Bird):
-					# cnt+=1
-					lbird.append(x)
-			# if cnt<10:
+			# for x in self.playerColliders:
+			# 	if isinstance(x,Bird):
+			# 		# cnt+=1
+			# 		lbird.append(x)
+			# # if cnt<10:
 			# if self.timer.time < 10:
 			for i in range(number_bird_generated):
 				self.generate_bird()
 			if self.timer.time > 10:
-				for x in lbird:
-					x.die()
+				# for x in lbird:
+				# 	x.die()
 			# if self.bosscnt == 5:
 				self.generate_bird(2)
 				# self.generate_bird(4)
