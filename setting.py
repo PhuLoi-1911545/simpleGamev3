@@ -40,7 +40,7 @@ level_map_v2 = [
 'L                                                                                                                                            R',
 'L                                                                   B                                               B                      B R',
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX']
-item_size = 32
+item_size = 60
 player_size = [32,32]
 tile_size = 64
 screen_width = 1200
