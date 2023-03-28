@@ -36,7 +36,7 @@ class Level:
 		self.target_img = load_image("target.png")
 		self.game_over=False
 		
-		self.aim_fly = False
+		self.aim_fly = True
 		self.cooldown_medkit = max_cooldown_medkit
 		self.cooldown_bird = max_cooldown_bird
 		self.cooldown_box = max_cooldown_box
@@ -45,6 +45,7 @@ class Level:
 		self.is_exit = False
   
 		self.bosscnt = 3
+		self.slow = 1
 
 	def play(self):
 		# Display the menu
@@ -230,6 +231,24 @@ class Level:
 			
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
 				self.playermoves.flyToDown = True
+    
+			# if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+			# 	if self.slow == 1:
+			# 		self.slow = 0.6
+			# 	elif self.slow == 0.6:
+			# 		self.slow = 0.3
+			# 	elif self.slow == 0.3:
+			# 		self.slow = 1
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
+				self.slow = 0.5
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+				self.slow = 1
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
+				self.slow = 1.5
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
+				self.slow = 2
+				
+
 			elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.game_over:
 				self.is_exit = True
 
@@ -248,7 +267,7 @@ class Level:
 		# self.bosscnt = delta%10
 		self.delta = delta
 		if self.aim_fly:
-			delta = delta * SLOMO_SPEED
+			delta = delta * self.slow
 
 		# Cooldown + Generate star
 		self.cooldown_medkit -= delta
@@ -301,11 +320,11 @@ class Level:
 		# 	return
 
 		# aim
-		if self.aim_fly:
-			player = self.player.sprite
-			px,py = player.rect.centerx, player.rect.centery
-			pygame.draw.line(self.display_surface,(255,255,255),(px,py),pygame.mouse.get_pos())
-			self.player.sprite.reduceLife(40*delta)
+		# if self.aim_fly:
+		# 	player = self.player.sprite
+		# 	px,py = player.rect.centerx, player.rect.centery
+		# 	pygame.draw.line(self.display_surface,(255,255,255),(px,py),pygame.mouse.get_pos())
+		# 	self.player.sprite.reduceLife(40*delta)
 		self.health_bar.update(self.display_surface)
 
 		self.timer.update()

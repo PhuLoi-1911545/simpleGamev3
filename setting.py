@@ -54,7 +54,7 @@ number_medkit_generated = 2
 number_bird_generated = 5
 number_box_generated = 1
 
-SLOMO_SPEED = 0.3
+SLOMO_SPEED = 1
 
 vec=pygame.math.Vector2
 
