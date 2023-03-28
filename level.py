@@ -228,6 +228,8 @@ class Level:
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
 				self.playermoves.flyToUp = True
 			
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+				self.playermoves.flyToDown = True
 			elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.game_over:
 				self.is_exit = True
 
