@@ -16,6 +16,7 @@ class PMoves:
 		self.flyToLeft = False
 		self.flyToRight = False
 		self.flyToUp = False
+		self.flyToDown = False
 class Player(pygame.sprite.Sprite):
 	def __init__(self,pos,game):
 		super().__init__()
@@ -163,7 +164,7 @@ class Player(pygame.sprite.Sprite):
 	def flyToLeft(self):
 		# mouse_pos = pygame.mouse.get_pos()
 
-		mouse_pos = [self.rect.centerx - 200,  self.rect.centery]
+		mouse_pos = [self.rect.centerx - 200,  self.rect.centery-80]
 
 		cenx = self.rect.centerx
 		ceny = self.rect.centery
@@ -175,7 +176,7 @@ class Player(pygame.sprite.Sprite):
 
 	def flyToRight(self):
 		# mouse_pos = pygame.mouse.get_pos()
-		mouse_pos = [self.rect.centerx + 200,  self.rect.centery]
+		mouse_pos = [self.rect.centerx + 200,  self.rect.centery-80]
 
 		# mouse_pos = [985,  100]
 		cenx = self.rect.centerx
@@ -189,7 +190,20 @@ class Player(pygame.sprite.Sprite):
 
 	def flyToUp(self):
 		# mouse_pos = pygame.mouse.get_pos()
-		mouse_pos = [self.rect.centerx,  self.rect.centery-200]
+		mouse_pos = [self.rect.centerx,  self.rect.centery-150]
+
+		# mouse_pos = [985,  100]
+		cenx = self.rect.centerx
+		ceny = self.rect.centery
+
+		self.v.x = mouse_pos[0] - cenx
+		self.v.y = mouse_pos[1] - ceny
+		speed = self.speed*min(1,self.v.length()/150)
+		self.normalize_to_speed(speed)
+
+	def flyToDown(self):
+		# mouse_pos = pygame.mouse.get_pos()
+		mouse_pos = [self.rect.centerx,  self.rect.centery+100]
 
 		# mouse_pos = [985,  100]
 		cenx = self.rect.centerx
@@ -265,6 +279,11 @@ class Player(pygame.sprite.Sprite):
 			self.flyToUp()
 			sound.play('swoosh')
 			playermoves.flyToUp=False
+   
+		if playermoves.flyToDown:
+			self.flyToDown()
+			sound.play('swoosh')
+			playermoves.flyToDown=False
 
 		self.starMode(delta)
 		self.apply_gravity(delta)
