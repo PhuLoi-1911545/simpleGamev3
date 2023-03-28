@@ -12,7 +12,7 @@ from menu import Menu
 
 while True:
 	
-	level = Level(level_map,screen)
+	level = Level(level_map_v2,screen)
 	menu = Menu(level)
 	menu.show()
 	pygame.mouse.set_visible(0)

@@ -24,6 +24,22 @@ level_map = [
 'L                                                                     R',
 'L                                                                   B R',
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX']
+
+level_map_v2 = [
+'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
+'L  B                                     B                                          B                                                      B R',
+'L                                                                                                                                            R',
+'L                                                                                                                                            R',
+'L                                                                                                                                            R',
+'L              WWWW                          B   WWWW                               WWWW                          B   WWWW                   R',
+'L   B                                                                    B                                                                   R',
+'L                                                                                                                                            R',
+'L                                                                                                                                            R',
+'L                 P                                                                    P                                                     R',
+'L  WWWWW       WWWWWW       WWWWWW       WWWWWW    WWWWW    WWWWWW      WWWWW       WWWWWW       WWWWWW       WWWWWW    WWWWW    WWWWWW      R',
+'L                                                                                                                                            R',
+'L                                                                   B                                               B                      B R',
+'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX']
 item_size = 32
 player_size = [32,32]
 tile_size = 64
@@ -31,7 +47,7 @@ screen_width = 1200
 screen_height = 704
 
 max_cooldown_medkit = 4
-max_cooldown_bird = 6
+max_cooldown_bird = 3
 max_cooldown_box = 10
 
 number_medkit_generated = 2
