@@ -227,10 +227,6 @@ class Level:
 						
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
 				self.playermoves.flyToUp = True
-
-			if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-				self.playermoves.flyToDown = True
-			
 			
 			elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.game_over:
 				self.is_exit = True
@@ -238,10 +234,10 @@ class Level:
 		if self.game_over:
 			return
 		# slomo and fly 
-		if pygame.mouse.get_pressed()[0]:
-			self.aim_fly=True
-		else:
-			self.aim_fly=False
+		# if pygame.mouse.get_pressed()[0]:
+		# 	self.aim_fly=True
+		# else:
+		# 	self.aim_fly=False
 
 		self.scroll_world()
 
@@ -279,17 +275,17 @@ class Level:
 			# 	self.generate_bird(cnt*2)
    
    
-			# for x in self.playerColliders:
-			# 	if isinstance(x,Bird):
-			# 		# cnt+=1
-			# 		lbird.append(x)
-			# # if cnt<10:
+			for x in self.playerColliders:
+				if isinstance(x,Bird):
+					# cnt+=1
+					lbird.append(x)
+			# if cnt<10:
 			# if self.timer.time < 10:
 			for i in range(number_bird_generated):
 				self.generate_bird()
 			if self.timer.time > 10:
-				# for x in lbird:
-				# 	x.die()
+				for x in lbird:
+					x.die()
 			# if self.bosscnt == 5:
 				self.generate_bird(2)
 				# self.generate_bird(4)
@@ -352,8 +348,8 @@ class Level:
 		self.display_surface.blit(statisticSurf,(0,30))
 		self.timer.draw(self.display_surface)
 		self.score.draw(self.display_surface)
-		self.display_surface.blit(
-		self.target_img, vec(pygame.mouse.get_pos()) - vec(self.target_img.get_size()) / 2)
+		# self.display_surface.blit(
+		# self.target_img, vec(pygame.mouse.get_pos()) - vec(self.target_img.get_size()) / 2)
 	
 	def draw_bg(self):
 		for rect in self.bg_rects:

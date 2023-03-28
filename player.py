@@ -298,7 +298,7 @@ class Player(pygame.sprite.Sprite):
 
 
 class Bullet:
-	def __init__(self, game, vector, pos,color = (100,255,100)):
+	def __init__(self, game, vector, pos,color = (255, 251, 0)):
 		self.game = game
 		self.color = color
 		try:
