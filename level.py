@@ -46,6 +46,7 @@ class Level:
   
 		self.bosscnt = 3
 		self.slow = 1
+		self.number_bird_generated = number_bird_generated
 
 	def play(self):
 		# Display the menu
@@ -247,6 +248,16 @@ class Level:
 				self.slow = 1.5
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
 				self.slow = 2
+
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_z:
+				self.generate_bird(2)
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_x:
+				for i in range(number_bird_generated):
+					self.generate_bird()
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
+				self.number_bird_generated = 15
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_v:
+				self.number_bird_generated = number_bird_generated
 				
 
 			elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.game_over:
@@ -282,7 +293,7 @@ class Level:
 			self.cooldown_bird = max_cooldown_bird
 			self.bosscnt -= 1
 			print(self.bosscnt)
-			for i in range(number_bird_generated):
+			for i in range(self.number_bird_generated):
 				self.generate_bird()
     
 		if self.bosscnt == 0:
