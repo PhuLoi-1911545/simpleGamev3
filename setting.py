@@ -27,18 +27,18 @@ level_map = [
 
 level_map_v2 = [
 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
-'L  B                                     B                                          B                                                      B R',
+'L                                        B                                          B                                                        R',
+'L                                                              B                                                                             R',
 'L                                                                                                                                            R',
-'L                                                                                                                                            R',
-'L                                                                                                                                            R',
-'L              WWWW                          B   WWWW                               WWWW                          B   WWWW                   R',
+'L                B                                P                                                      B                                   R',
+'L              WWWW              WWW         B   WWWW                           WWW                      WWW      B           WWW            R',
 'L   B                                                                    B                                                                   R',
 'L                                                                                                                                            R',
 'L                                                                                                                                            R',
-'L                 P                                                                    P                                                     R',
+'L                 P                        B                  P                        B                         P                           R',
 'L  WWWWW       WWWWWW       WWWWWW       WWWWWW    WWWWW    WWWWWW      WWWWW       WWWWWW       WWWWWW       WWWWWW    WWWWW    WWWWWW      R',
 'L                                                                                                                                            R',
-'L                                                                   B                                               B                      B R',
+'L                                                                   B                                               B                        R',
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX']
 item_size = 32
 player_size = [32,32]
