@@ -13,8 +13,9 @@ from util import import_folder
 from sound import sound
 class PMoves:
 	def __init__(self):
-		self.flyToMouse = False
-
+		self.flyToLeft = False
+		self.flyToRight = False
+		self.flyToUp = False
 class Player(pygame.sprite.Sprite):
 	def __init__(self,pos,game):
 		super().__init__()
@@ -159,9 +160,11 @@ class Player(pygame.sprite.Sprite):
 		self.collideOthers(allHits,delta)
 			
 
+	def flyToLeft(self):
+		# mouse_pos = pygame.mouse.get_pos()
 
-	def flyToMouse(self):
-		mouse_pos = pygame.mouse.get_pos()
+		mouse_pos = [self.rect.centerx - 200,  self.rect.centery]
+
 		cenx = self.rect.centerx
 		ceny = self.rect.centery
 
@@ -169,6 +172,35 @@ class Player(pygame.sprite.Sprite):
 		self.v.y = mouse_pos[1] - ceny
 		speed = self.speed*min(1,self.v.length()/150)
 		self.normalize_to_speed(speed)
+
+	def flyToRight(self):
+		# mouse_pos = pygame.mouse.get_pos()
+		mouse_pos = [self.rect.centerx + 200,  self.rect.centery]
+
+		# mouse_pos = [985,  100]
+		cenx = self.rect.centerx
+		ceny = self.rect.centery
+
+		self.v.x = mouse_pos[0] - cenx
+		self.v.y = mouse_pos[1] - ceny
+		speed = self.speed*min(1,self.v.length()/150)
+		self.normalize_to_speed(speed)
+
+
+	def flyToUp(self):
+		# mouse_pos = pygame.mouse.get_pos()
+		mouse_pos = [self.rect.centerx,  self.rect.centery-200]
+
+		# mouse_pos = [985,  100]
+		cenx = self.rect.centerx
+		ceny = self.rect.centery
+
+		self.v.x = mouse_pos[0] - cenx
+		self.v.y = mouse_pos[1] - ceny
+		speed = self.speed*min(1,self.v.length()/150)
+		self.normalize_to_speed(speed)
+
+
 
 	def starMode(self,delta):
 		if self.starModeTime>0:
@@ -219,11 +251,21 @@ class Player(pygame.sprite.Sprite):
                 )
 			self.game.game_over=True
 			return
-		if playermoves.flyToMouse:
-			self.flyToMouse()
+		if playermoves.flyToLeft:
+			self.flyToLeft()
 			sound.play('swoosh')
-			playermoves.flyToMouse=False
+			playermoves.flyToLeft=False
 		
+		if playermoves.flyToRight:
+			self.flyToRight()
+			sound.play('swoosh')
+			playermoves.flyToRight=False
+
+		if playermoves.flyToUp:
+			self.flyToUp()
+			sound.play('swoosh')
+			playermoves.flyToUp=False
+
 		self.starMode(delta)
 		self.apply_gravity(delta)
 		self.move(delta)

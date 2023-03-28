@@ -216,8 +216,19 @@ class Level:
 			if event.type == pygame.QUIT:
 				pygame.quit()
 				sys.exit()
-			elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-				self.playermoves.flyToMouse = True
+			if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+				# self.playermoves.flyToMouse = True
+				print(pygame.mouse.get_pos())
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+				self.playermoves.flyToLeft = True
+			
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+				self.playermoves.flyToRight = True
+						
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+				self.playermoves.flyToUp = True
+			
+			
 			elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.game_over:
 				self.is_exit = True
 
