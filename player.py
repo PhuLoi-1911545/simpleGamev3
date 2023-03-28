@@ -74,7 +74,7 @@ class Player(pygame.sprite.Sprite):
 					self.addLife(40)
 			elif isinstance(hit,MedKit):
 				self.game.particles.append(
-                    CircleExplosion(hit.rect.center, (255, 50, 50), 7, 100)
+                    CircleExplosion(hit.rect.center, (222, 207, 47), 7, 100)
                 )
 				self.addLife(30)
 				sound.play('item')
