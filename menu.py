@@ -41,18 +41,27 @@ class Menu(object):
     HELP_TEXT = """\
 Controls:
 
-        Mouse Left Click
-            Slow motion the game and character move to the mouse position but lost health
-
-        ESC in game screen
-            Pause the game or exit the main menu
-
+        Press SPACE to chose options in main menu, ESC to back to main menu
+        
+        Press Arrow buttons to move left right up down
+        
+        To config game, follow list of buttons below:
+            Edit speed: 
+                A: 0.5
+                S: 1
+                D: 1.5
+                F: 2
+            Edit monsters and boss: 
+                Z: spawn a boss
+                X: spawn some monster
+                C: x3 monsters each time spawn
+                V: x1 monsters each time spawn        
 
 Target:
 
-        Collide the bird to get higher score
-        Collide the star or box to get more health
-        Do not collide the thorn and the lava bounding game due to lost much health
+        Collide the monster to get higher score
+        Collide the red potion or green potion  to get more health
+        Do not collide the thorn and the spike bounding game due to lost much health
 """
 
     def __init__(self, game):
@@ -304,7 +313,7 @@ Target:
             y_pos += height + spacing
 
     def _help(self, y_pos):
-        self.__render_lines(self.HELP_TEXT, 18, 2, y_pos)
+        self.__render_lines(self.HELP_TEXT, 15, 2, y_pos)
 
     def _exit(self, y_pos):
         choice, self._choice = self._choice, self._last_choice

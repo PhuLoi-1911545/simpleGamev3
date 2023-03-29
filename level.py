@@ -251,9 +251,11 @@ class Level:
 
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_z:
 				self.generate_bird(2)
+				print("Spawn a boss")
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_x:
 				for i in range(number_bird_generated):
 					self.generate_bird()
+				print("spawn monster")
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
 				self.number_bird_generated = 15
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_v:
