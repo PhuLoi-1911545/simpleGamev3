@@ -27,20 +27,20 @@ level_map = [
 
 level_map_v2 = [
 'UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU',
-'L  B                                     B                                          B                                                      B R',
+'L                                        B                                          B                                                        R',
+'L                                                              B                                                                             R',
 'L                                                                                                                                            R',
-'L                                                                                                                                            R',
-'L                                                                                                                                            R',
-'L              WWWW                          B   WWWW                               WWWW                          B   WWWW                   R',
+'L                B                                P                                                      B                                   R',
+'L              WWWW              WWW         B   WWWW                           WWW                      WWW      B           WWW            R',
 'L   B                                                                    B                                                                   R',
 'L                                                                                                                                            R',
 'L                                                                                                                                            R',
-'L                 P                                                                    P                                                     R',
+'L                 P                        B                  P                        B                         P                           R',
 'L  WWWWW       WWWWWW       WWWWWW       WWWWWW    WWWWW    WWWWWW      WWWWW       WWWWWW       WWWWWW       WWWWWW    WWWWW    WWWWWW      R',
 'L                                                                                                                                            R',
-'L                                                                   B                                               B                      B R',
+'L                                                                   B                                               B                        R',
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX']
-item_size = 32
+item_size = 64
 player_size = [32,32]
 tile_size = 64
 screen_width = 1200
@@ -54,7 +54,7 @@ number_medkit_generated = 2
 number_bird_generated = 5
 number_box_generated = 1
 
-SLOMO_SPEED = 0.3
+SLOMO_SPEED = 1
 
 vec=pygame.math.Vector2
 
@@ -86,7 +86,7 @@ MENU_FRAME_RATE = 24
 TRANSPARENT = BLACK
 
 HIGHSCORES_AMOUNT = 10
-GAME = "Bird's Rage"
+GAME = "SUPERMAN"
 WIDTH, HEIGHT = (screen_width, screen_height)
 # WIDTH, HEIGHT = (len(level_map[0])*tile_size,len(level_map)*tile_size)
 DATA_DIRNAME = "data"

@@ -36,7 +36,7 @@ class Level:
 		self.target_img = load_image("target.png")
 		self.game_over=False
 		
-		self.aim_fly = False
+		self.aim_fly = True
 		self.cooldown_medkit = max_cooldown_medkit
 		self.cooldown_bird = max_cooldown_bird
 		self.cooldown_box = max_cooldown_box
@@ -44,7 +44,9 @@ class Level:
 		self.clock = pygame.time.Clock()
 		self.is_exit = False
   
-		# self.bosscnt = 0
+		self.bosscnt = 3
+		self.slow = 1
+		self.number_bird_generated = number_bird_generated
 
 	def play(self):
 		# Display the menu
@@ -227,21 +229,47 @@ class Level:
 						
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
 				self.playermoves.flyToUp = True
-
+			
 			if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
 				self.playermoves.flyToDown = True
-			
-			
+    
+			# if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+			# 	if self.slow == 1:
+			# 		self.slow = 0.6
+			# 	elif self.slow == 0.6:
+			# 		self.slow = 0.3
+			# 	elif self.slow == 0.3:
+			# 		self.slow = 1
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
+				self.slow = 0.5
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+				self.slow = 1
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
+				self.slow = 1.5
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_f:
+				self.slow = 2
+
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_z:
+				self.generate_bird(2)
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_x:
+				for i in range(number_bird_generated):
+					self.generate_bird()
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
+				self.number_bird_generated = 15
+			if event.type == pygame.KEYDOWN and event.key == pygame.K_v:
+				self.number_bird_generated = number_bird_generated
+				
+
 			elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and self.game_over:
 				self.is_exit = True
 
 		if self.game_over:
 			return
 		# slomo and fly 
-		if pygame.mouse.get_pressed()[0]:
-			self.aim_fly=True
-		else:
-			self.aim_fly=False
+		# if pygame.mouse.get_pressed()[0]:
+		# 	self.aim_fly=True
+		# else:
+		# 	self.aim_fly=False
 
 		self.scroll_world()
 
@@ -250,7 +278,7 @@ class Level:
 		# self.bosscnt = delta%10
 		self.delta = delta
 		if self.aim_fly:
-			delta = delta * SLOMO_SPEED
+			delta = delta * self.slow
 
 		# Cooldown + Generate star
 		self.cooldown_medkit -= delta
@@ -263,50 +291,16 @@ class Level:
 		self.cooldown_bird -= delta
 		if self.cooldown_bird <= 0:
 			self.cooldown_bird = max_cooldown_bird
-			# cnt = 1
-			lbird =[]
-			# bosscnt = 0
-			# for x in self.playerColliders:
-			# 	if isinstance(x,Bird):
-			# 		cnt+=1
-			# 		lbird.append(x)
-			# if cnt<10:
-			# 	for i in range(number_bird_generated):
-			# 		self.generate_bird()
-			# else:
-			# 	for x in lbird:
-			# 		x.die()
-			# 	self.generate_bird(cnt*2)
-   
-   
-			# for x in self.playerColliders:
-			# 	if isinstance(x,Bird):
-			# 		# cnt+=1
-			# 		lbird.append(x)
-			# # if cnt<10:
-			# if self.timer.time < 10:
-			for i in range(number_bird_generated):
+			self.bosscnt -= 1
+			print(self.bosscnt)
+			for i in range(self.number_bird_generated):
 				self.generate_bird()
-			if self.timer.time > 10:
-				# for x in lbird:
-				# 	x.die()
-			# if self.bosscnt == 5:
-				self.generate_bird(2)
-				# self.generate_bird(4)
-					# self.bosscnt +=  1
-				# cnt += 10
-			# if cnt == 5:
-				# for x in lbird:
-				# 	x.die()
-				
     
-			# else:
-			# 	for x in lbird:
-			# 		x.die()
-			# 	self.generate_bird(cnt*2)
-			# print(cnt)
-		
-			# self.generate_bird(100)
+		if self.bosscnt == 0:
+			print("Generate a boss")
+			self.generate_bird(2)
+			self.bosscnt = 3
+				
 		
 		# Cooldown + Generate box
 		self.cooldown_box -= delta
@@ -337,11 +331,11 @@ class Level:
 		# 	return
 
 		# aim
-		if self.aim_fly:
-			player = self.player.sprite
-			px,py = player.rect.centerx, player.rect.centery
-			pygame.draw.line(self.display_surface,(255,255,255),(px,py),pygame.mouse.get_pos())
-			self.player.sprite.reduceLife(40*delta)
+		# if self.aim_fly:
+		# 	player = self.player.sprite
+		# 	px,py = player.rect.centerx, player.rect.centery
+		# 	pygame.draw.line(self.display_surface,(255,255,255),(px,py),pygame.mouse.get_pos())
+		# 	self.player.sprite.reduceLife(40*delta)
 		self.health_bar.update(self.display_surface)
 
 		self.timer.update()
@@ -352,8 +346,8 @@ class Level:
 		self.display_surface.blit(statisticSurf,(0,30))
 		self.timer.draw(self.display_surface)
 		self.score.draw(self.display_surface)
-		self.display_surface.blit(
-		self.target_img, vec(pygame.mouse.get_pos()) - vec(self.target_img.get_size()) / 2)
+		# self.display_surface.blit(
+		# self.target_img, vec(pygame.mouse.get_pos()) - vec(self.target_img.get_size()) / 2)
 	
 	def draw_bg(self):
 		for rect in self.bg_rects:
