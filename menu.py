@@ -41,8 +41,8 @@ class Menu(object):
     HELP_TEXT = """\
 Controls:
 
-        Mouse Left Click
-            Slow motion the game and character move to the mouse position but lost health
+        Move
+           Arrow keys to move the character in the selected direction
 
         ESC in game screen
             Pause the game or exit the main menu
@@ -50,8 +50,8 @@ Controls:
 
 Target:
 
-        Collide the bird to get higher score
-        Collide the star or box to get more health
+        Collide the monster to get score
+        Collide the box to get more health
         Do not collide the thorn and the lava bounding game due to lost much health
 """
 
