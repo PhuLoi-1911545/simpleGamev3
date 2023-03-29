@@ -76,14 +76,14 @@ class Player(pygame.sprite.Sprite):
 				self.game.particles.append(
                     CircleExplosion(hit.rect.center, (255, 50, 50), 7, 100)
                 )
-				self.addLife(30)
+				self.addLife(0)
 				sound.play('item')
 				hit.kill()
 			elif isinstance(hit,Star):
 				self.game.particles.append(
                     CircleExplosion(hit.rect.center, (255, 150, 50), 7, 100)
                 )
-				self.starModeTime = 3
+				self.starModeTime = 0.35
 				sound.stop('music')
 				sound.play('star_power',-1)
 				hit.kill()
@@ -106,7 +106,7 @@ class Player(pygame.sprite.Sprite):
 				if randint(1,3)==1:
 					obj=Potion(v,item_size,self.game)
 				else:
-					obj=Star(v,item_size/2,self.game)
+					obj=Star(v,item_size,self.game)
 				self.game.tiles.add(obj)
 				self.game.playerGathers.add(obj)
 				hit.kill()
@@ -164,7 +164,6 @@ class Player(pygame.sprite.Sprite):
 			
 
 	def flyToLeft(self):
-		# mouse_pos = pygame.mouse.get_pos()
 
 		mouse_pos = [self.rect.centerx - 100,  self.rect.centery-80]
 
@@ -177,10 +176,8 @@ class Player(pygame.sprite.Sprite):
 		self.normalize_to_speed(speed)
 
 	def flyToRight(self):
-		# mouse_pos = pygame.mouse.get_pos()
 		mouse_pos = [self.rect.centerx + 100,  self.rect.centery-80]
 
-		# mouse_pos = [985,  100]
 		cenx = self.rect.centerx
 		ceny = self.rect.centery
 
@@ -191,10 +188,8 @@ class Player(pygame.sprite.Sprite):
 
 
 	def flyToUp(self):
-		# mouse_pos = pygame.mouse.get_pos()
 		mouse_pos = [self.rect.centerx,  self.rect.centery-150]
 
-		# mouse_pos = [985,  100]
 		cenx = self.rect.centerx
 		ceny = self.rect.centery
 
@@ -204,10 +199,8 @@ class Player(pygame.sprite.Sprite):
 		self.normalize_to_speed(speed)
 
 	def flyToDown(self):
-		# mouse_pos = pygame.mouse.get_pos()
 		mouse_pos = [self.rect.centerx,  self.rect.centery+100]
 
-		# mouse_pos = [985,  100]
 		cenx = self.rect.centerx
 		ceny = self.rect.centery
 
@@ -231,7 +224,7 @@ class Player(pygame.sprite.Sprite):
 		if self.nextShoot <= 0:
 			self.nextShoot = self.starShootDur
 			v=vec([1,0])
-			n=randint(10,30)
+			n=randint(99,100)
 			for j in range(n):
 				self.game.bullets.append(
 					Bullet(
@@ -247,7 +240,6 @@ class Player(pygame.sprite.Sprite):
 		self.v.y += self.gravity*delta
 
 	def animate(self,delta):
-		# mouse_pos = pygame.mouse.get_pos()
 		self.frameIdx += delta*self.animation_speed
 		while self.frameIdx >= len(self.images[0]):
 			self.frameIdx-=len(self.images[0])
@@ -342,5 +334,14 @@ class Bullet:
 
 	def draw(self, surface):
 		pygame.draw.line(
-			surface, self.color, self.pos, self.pos + self.vector * 30, 4
+			surface, self.color, self.pos, self.pos + self.vector * 4, 4
 		)
+
+		# self.game.particles.append(
+		# 	CircleExplosion(self.pos, (255, 50, 50), 7, 2000)
+		# )
+		# pygame.draw.circle(
+		# 	surface, self.color, self.pos, 400, 4
+		# )
+  
+		# pygame.draw.circle()
